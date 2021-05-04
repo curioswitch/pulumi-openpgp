@@ -95,17 +95,19 @@ func Provider() tfbridge.ProviderInfo {
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
-		P:           p,
-		Name:        "openpgp",
-		Description: "A Pulumi package for creating and managing openpgp keys.",
-		Keywords:    []string{"pulumi", "openpgp"},
-		License:     "Apache-2.0",
-		Homepage:    "https://github.com/curioswitch/pulumi-openpgp",
-		Repository:  "https://github.com/curioswitch/pulumi-openpgp",
-		Config:      map[string]*tfbridge.SchemaInfo{
+		P:                 p,
+		Name:              "openpgp",
+		GitHubOrg:         "mercari",
+		Description:       "A Pulumi package for creating and managing openpgp keys.",
+		Keywords:          []string{"pulumi", "openpgp"},
+		License:           "Apache-2.0",
+		Homepage:          "https://github.com/curioswitch/pulumi-openpgp",
+		Repository:        "https://github.com/curioswitch/pulumi-openpgp",
+		PluginDownloadURL: fmt.Sprintf("https://github.com/curioswitch/pulumi-openpgp/releases/download/v%[1]s", version.Version),
+		Config: map[string]*tfbridge.SchemaInfo{
 		},
 		PreConfigureCallback: preConfigureCallback,
-		Resources:            map[string]*tfbridge.ResourceInfo{
+		Resources: map[string]*tfbridge.ResourceInfo{
 			"openpgp_key": {Tok: makeResource(mainMod, "Key")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
@@ -129,7 +131,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(
-				fmt.Sprintf("github.com/pulumi/pulumi-%[1]s/sdk/", mainPkg),
+				fmt.Sprintf("github.com/curioswitch/pulumi-%[1]s/sdk/", mainPkg),
 				tfbridge.GetModuleMajorVersion(version.Version),
 				"go",
 				mainPkg,

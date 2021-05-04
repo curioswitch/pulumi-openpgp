@@ -51,7 +51,7 @@ tfgen:: install_plugins
 	$(WORKING_DIR)/bin/${TFGEN} schema --out provider/cmd/${PROVIDER}
 	(cd provider && VERSION=$(VERSION) go generate cmd/${PROVIDER}/main.go)
 
-provider:: tfgen install_plugins # build the provider binary
+provider:: # build the provider binary
 	(cd provider && go build -a -o $(WORKING_DIR)/bin/${PROVIDER} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${PROVIDER})
 
 build_sdks:: install_plugins provider build_nodejs build_python build_go build_dotnet # build all the sdks
@@ -66,7 +66,7 @@ build_nodejs:: # build the node sdk
     	sed -i.bak -e "s/\$${VERSION}/$(VERSION)/g" ./bin/package.json
 
 build_python:: PYPI_VERSION := $(shell pulumictl get version --language python)
-build_python:: install_plugins tfgen # build the python sdk
+build_python:: # build the python sdk
 	$(WORKING_DIR)/bin/$(TFGEN) python --overlays provider/overlays/python --out sdk/python/
 	cd sdk/python/ && \
         cp ../../README.md . && \
@@ -77,14 +77,14 @@ build_python:: install_plugins tfgen # build the python sdk
         cd ./bin && python3 setup.py build sdist
 
 build_dotnet:: DOTNET_VERSION := $(shell pulumictl get version --language dotnet)
-build_dotnet:: install_plugins tfgen # build the dotnet sdk
+build_dotnet:: # build the dotnet sdk
 	pulumictl get version --language dotnet
 	$(WORKING_DIR)/bin/$(TFGEN) dotnet --overlays provider/overlays/dotnet --out sdk/dotnet/
 	cd sdk/dotnet/ && \
 		echo "${DOTNET_VERSION}" >version.txt && \
         dotnet build /p:Version=${DOTNET_VERSION}
 
-build_go:: install_plugins tfgen # build the go sdk
+build_go:: # build the go sdk
 	$(WORKING_DIR)/bin/$(TFGEN) go --overlays provider/overlays/go --out sdk/go/
 
 lint_provider:: provider # lint the provider code

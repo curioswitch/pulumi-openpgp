@@ -30,8 +30,8 @@ on:
       - main
 
 jobs:
-  build:
-    name: Build
+  build-provider:
+    name: Build Provider
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -61,6 +61,13 @@ jobs:
       - name: Install pulumictl
         run: go install github.com/pulumi/pulumictl/cmd/pulumictl@v0.0.24
       - uses: pulumi/action-install-pulumi-cli@v1
+      - name: Build tfgen
+        run: make tfgen
+      - name: Upload tfgen
+        uses: actions/upload-artifact@v2
+        with:
+          name: tfgen
+          path: bin/pulumi-tfgen-openpgp
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
         with:
