@@ -1,0 +1,122 @@
+{
+    "name": "openpgp",
+    "description": "A Pulumi package for creating and managing openpgp keys.",
+    "keywords": [
+        "pulumi",
+        "openpgp"
+    ],
+    "homepage": "https://github.com/curioswitch/pulumi-openpgp",
+    "license": "Apache-2.0",
+    "attribution": "This Pulumi package is based on the [`openpgp` Terraform Provider](https://github.com/mercari/terraform-provider-openpgp).",
+    "repository": "https://github.com/curioswitch/pulumi-openpgp",
+    "pluginDownloadURL": "https://github.com/curioswitch/pulumi-openpgp/releases/download/v0.0.1-alpha.1620145731+08f662d6",
+    "meta": {
+        "moduleFormat": "(.*)(?:/[^/]*)"
+    },
+    "config": {},
+    "provider": {
+        "description": "The provider type for the openpgp package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n"
+    },
+    "resources": {
+        "openpgp:index/key:Key": {
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "description": "Email of PGP key\n"
+                },
+                "fingerprint": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of PGP key\n"
+                },
+                "privateKey": {
+                    "type": "string"
+                },
+                "publicKey": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "email",
+                "fingerprint",
+                "name",
+                "privateKey",
+                "publicKey"
+            ],
+            "inputProperties": {
+                "email": {
+                    "type": "string",
+                    "description": "Email of PGP key\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of PGP key\n"
+                }
+            },
+            "requiredInputs": [
+                "email"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Key resources.\n",
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "description": "Email of PGP key\n"
+                    },
+                    "fingerprint": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of PGP key\n"
+                    },
+                    "privateKey": {
+                        "type": "string"
+                    },
+                    "publicKey": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "language": {
+        "csharp": {
+            "compatibility": "tfbridge20",
+            "namespaces": null,
+            "packageReferences": {
+                "Pulumi": "3.*",
+                "System.Collections.Immutable": "1.6.0"
+            }
+        },
+        "go": {
+            "generateResourceContainerTypes": true,
+            "importBasePath": "github.com/curioswitch/pulumi-openpgp/sdk/go/openpgp"
+        },
+        "nodejs": {
+            "compatibility": "tfbridge20",
+            "dependencies": {
+                "@pulumi/pulumi": "^3.0.0"
+            },
+            "devDependencies": {
+                "@types/mime": "^2.0.0",
+                "@types/node": "^10.0.0"
+            },
+            "disableUnionOutputTypes": true,
+            "packageDescription": "A Pulumi package for creating and managing openpgp keys.",
+            "packageName": "@curiostack/pulumi-openpgp",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/mercari/terraform-provider-openpgp)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-openpgp` repo](https://github.com/pulumi/pulumi-openpgp/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`mercari/terraform-provider-openpgp` repo](https://github.com/mercari/terraform-provider-openpgp/issues).",
+            "typescriptVersion": ""
+        },
+        "python": {
+            "compatibility": "tfbridge20",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/mercari/terraform-provider-openpgp)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-openpgp` repo](https://github.com/pulumi/pulumi-openpgp/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`mercari/terraform-provider-openpgp` repo](https://github.com/mercari/terraform-provider-openpgp/issues).",
+            "requires": {
+                "pulumi": "\u003e=3.0.0,\u003c4.0.0"
+            }
+        }
+    }
+}

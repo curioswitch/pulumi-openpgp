@@ -1,0 +1,26 @@
+{
+    "name": "@curiostack/pulumi-openpgp",
+    "version": "${VERSION}",
+    "description": "A Pulumi package for creating and managing openpgp keys.",
+    "keywords": [
+        "pulumi",
+        "openpgp"
+    ],
+    "homepage": "https://github.com/curioswitch/pulumi-openpgp",
+    "repository": "https://github.com/curioswitch/pulumi-openpgp",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "tsc"
+    },
+    "dependencies": {
+        "@pulumi/pulumi": "^3.0.0"
+    },
+    "devDependencies": {
+        "@types/mime": "^2.0.0",
+        "@types/node": "^10.0.0"
+    },
+    "pulumi": {
+        "resource": true,
+        "pluginDownloadURL": "https://github.com/curioswitch/pulumi-openpgp/releases/download/v0.0.1-alpha.1620145731+08f662d6"
+    }
+}
