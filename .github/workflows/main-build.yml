@@ -87,5 +87,9 @@ jobs:
         with:
           name: sdks
           path: sdk/
-      - name: Debug git
-        run: git status
+      - name: Commit generated code
+        continue-on-error: true
+        run: |
+          git add .
+          git commit -m "Update generated SDKs"
+          git push
