@@ -12,7 +12,7 @@ class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'openpgp', '${PLUGIN_VERSION}', '--server', 'https://github.com/curioswitch/pulumi-openpgp/releases/download/v0.0.1-alpha.1620145731+08f662d6'])
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'openpgp', '${PLUGIN_VERSION}', '--server', 'https://github.com/curioswitch/pulumi-openpgp/releases/download/v0.0.1-alpha.1620146432+0e07d6bd'])
         except OSError as error:
             if error.errno == errno.ENOENT:
                 print("""

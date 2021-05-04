@@ -21,6 +21,6 @@
     },
     "pulumi": {
         "resource": true,
-        "pluginDownloadURL": "https://github.com/curioswitch/pulumi-openpgp/releases/download/v0.0.1-alpha.1620145731+08f662d6"
+        "pluginDownloadURL": "https://github.com/curioswitch/pulumi-openpgp/releases/download/v0.0.1-alpha.1620146432+0e07d6bd"
     }
 }
