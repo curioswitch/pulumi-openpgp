@@ -82,14 +82,11 @@ jobs:
           path: dist/*
       - name: Build SDKs
         run: make build_sdks
-      - name: Upload SDKs
-        uses: actions/upload-artifact@v2
-        with:
-          name: sdks
-          path: sdk/
       - name: Commit generated code
         continue-on-error: true
         run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
           git add .
           git commit -m "Update generated SDKs"
           git push
