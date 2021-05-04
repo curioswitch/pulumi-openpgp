@@ -88,4 +88,4 @@ jobs:
           name: sdks
           path: sdk/
       - name: Debug git
-        run: git diff
+        run: git status
