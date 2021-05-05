@@ -103,7 +103,7 @@ func Provider() tfbridge.ProviderInfo {
 		License:           "Apache-2.0",
 		Homepage:          "https://github.com/curioswitch/pulumi-openpgp",
 		Repository:        "https://github.com/curioswitch/pulumi-openpgp",
-		PluginDownloadURL: fmt.Sprintf("https://github.com/curioswitch/pulumi-openpgp/releases/download/v%[1]s", version.Version),
+		PluginDownloadURL: "https://github.com/curioswitch/pulumi-openpgp/releases/download/v${PLUGIN_VERSION}",
 		Config: map[string]*tfbridge.SchemaInfo{
 		},
 		PreConfigureCallback: preConfigureCallback,
