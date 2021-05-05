@@ -9,7 +9,7 @@
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`openpgp` Terraform Provider](https://github.com/mercari/terraform-provider-openpgp).",
     "repository": "https://github.com/curioswitch/pulumi-openpgp",
-    "pluginDownloadURL": "https://github.com/curioswitch/pulumi-openpgp/releases/download/v0.0.1-alpha.1620146432+0e07d6bd",
+    "pluginDownloadURL": "https://github.com/curioswitch/pulumi-openpgp/releases/download/v${PLUGIN_VERSION}",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
     },
