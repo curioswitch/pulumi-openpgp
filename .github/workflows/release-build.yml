@@ -20,14 +20,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-name: Main Build
+name: Release Build
 on:
   push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+    tags:
+      - v*.*.*
+      - '!v*.*.*-**'
 
 jobs:
   build:
@@ -73,20 +71,12 @@ jobs:
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
         with:
-          args: build --rm-dist --skip-validate --snapshot
+          args: release --rm-dist
           version: latest
-      - name: Upload provider
-        uses: actions/upload-artifact@v2
-        with:
-          name: provider
-          path: dist/*
       - name: Build SDKs
         run: make build_sdks
-      - name: Commit generated code
-        continue-on-error: true
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add .
-          git commit -m "Update generated SDKs"
-          git push
+      - name: Upload nodejs
+        uses: actions/upload-artifact@v2
+        with:
+          name: nodejs
+          path: sdk/nodejs/bin
