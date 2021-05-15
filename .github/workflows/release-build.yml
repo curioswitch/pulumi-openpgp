@@ -84,16 +84,9 @@ jobs:
          path: ci-scripts
          repository: pulumi/scripts
       - name: Publish SDKs
-        # TODO(choko): Remove after first version is published
-        continue-on-error: true
         run: ./ci-scripts/ci/publish-tfgen-package ${{ github.workspace }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_KEY }}
           NO_TFGEN_PYTHON_PACKAGE: true
           # Required by ci-scripts, even though we don't use Travis
           TRAVIS_OS_NAME: linux
-      - name: First NPM publish
-        run: npm publish --access public
-        working-directory: sdk/nodejs/bin
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_KEY }}
