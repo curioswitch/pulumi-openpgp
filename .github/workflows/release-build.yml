@@ -73,6 +73,8 @@ jobs:
         with:
           args: release --rm-dist
           version: latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build SDKs
         run: make build_sdks
       - name: Upload nodejs
