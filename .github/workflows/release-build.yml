@@ -44,6 +44,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
+          registry-url: https://registry.npmjs.org
       - uses: actions/setup-python@v2
         with:
           python-version: '3.x'
@@ -77,8 +78,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build SDKs
         run: make build_sdks
-      - name: Upload nodejs
-        uses: actions/upload-artifact@v2
+      - name: Checkout Scripts Repo
+        uses: actions/checkout@v2
         with:
-          name: nodejs
-          path: sdk/nodejs/bin
+         path: ci-scripts
+         repository: pulumi/scripts
+      - name: Publish SDKs
+        run: ./ci-scripts/ci/publish-tfgen-package ${{ github.workspace }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_KEY }}
+          NO_TFGEN_PYTHON_PACKAGE: true
+          # Required by ci-scripts, even though we don't use Travis
+          TRAVIS_OS_NAME: linux
